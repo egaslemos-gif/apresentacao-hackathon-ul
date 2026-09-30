@@ -41,22 +41,31 @@ h3{font-size:clamp(20px,2vw,30px);margin:0 0 12px}p,li{font-size:clamp(17px,1.45
 @media(max-width:850px){header{height:56px}.grid,.grid2{grid-template-columns:1fr}.slide{padding:30px 20px 95px}.node:not(:last-child)::after{display:none}.canvas{grid-template-columns:1fr}.toolbar .label{display:none}}
 @media(max-width:520px){h1{font-size:42px}h2{font-size:34px}.toolbar{gap:3px}.btn{padding:8px}.brand small{display:none}}
 @media print {
-  @page { size: landscape; margin: 0; }
+  @page { margin: 0; }
   * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-  body { overflow: visible; background: var(--bg); }
+  body { overflow: visible; background: var(--bg); font-size: 14pt; }
   .app { height: auto; display: block; }
   header, .controls, .progress, #laser, #notes, .toast { display: none !important; }
   .slide { 
     display: flex !important; 
     flex-direction: column !important;
     height: 100vh; 
-    min-height: 100vh; 
     page-break-after: always; 
     page-break-inside: avoid; 
-    padding: 6vh 8vw; 
+    padding: 10mm 15mm; 
     box-sizing: border-box; 
     justify-content: center !important;
+    max-width: 100% !important;
+    margin: 0 !important;
   }
+  h1 { font-size: 32pt !important; margin: 10px 0 15px !important; line-height: 1.1 !important; }
+  h2 { font-size: 26pt !important; margin: 10px 0 15px !important; line-height: 1.1 !important; }
+  h3 { font-size: 16pt !important; margin: 0 0 10px !important; }
+  p, li { font-size: 14pt !important; line-height: 1.4 !important; }
+  .lead { font-size: 16pt !important; margin-bottom: 15px !important; }
+  .card, .example, .callout, .exercise, .node, .field { padding: 15px !important; margin: 10px 0 !important; }
+  .grid, .grid2 { gap: 15px !important; }
+  .phone { max-width: 250px !important; padding: 10px !important; border-width: 5px !important; margin: auto !important; }
 }
 </style>
 </head>
