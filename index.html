@@ -48,6 +48,7 @@ h3{font-size:clamp(20px,2vw,30px);margin:0 0 12px}p,li{font-size:clamp(17px,1.45
 <header>
   <div class="brand">DO PROBLEMA AO PROTÓTIPO <small>Hackathon · Comunidades Resilientes</small></div>
   <div class="toolbar">
+    <button class="btn" id="printBtn" title="Baixar PDF / Imprimir">🖨</button>
     <button class="btn" id="fontDown" title="Diminuir fonte">A−</button>
     <button class="btn" id="fontUp" title="Aumentar fonte">A+</button>
     <button class="btn" id="theme" title="Light/Dark">☼</button>
@@ -256,10 +257,11 @@ document.addEventListener('keydown',e=>{
  if(e.key.toLowerCase()==='f') toggleFS();
  if(e.key.toLowerCase()==='l') toggleLaser();
  if(e.key.toLowerCase()==='n') toggleNotes();
+ if(e.key.toLowerCase()==='p') window.print();
  if(e.key==='+') changeFont(.08); if(e.key==='-') changeFont(-.08);
 });
 function toggleFS(){if(!document.fullscreenElement) document.documentElement.requestFullscreen?.(); else document.exitFullscreen?.()}
-document.getElementById('fs').onclick=toggleFS;
+document.getElementById('fs').onclick=toggleFS; document.getElementById('printBtn').onclick=()=>window.print();
 function changeFont(v){fontScale=Math.max(.8,Math.min(1.35,fontScale+v));document.documentElement.style.fontSize=(16*fontScale)+'px';toast('Tamanho da interface: '+Math.round(fontScale*100)+'%')}
 document.getElementById('fontUp').onclick=()=>changeFont(.08);document.getElementById('fontDown').onclick=()=>changeFont(-.08);
 document.getElementById('theme').onclick=()=>document.body.classList.toggle('dark');
@@ -268,7 +270,7 @@ function toggleNotes(){const n=document.getElementById('notes');n.style.display=
 document.getElementById('laserBtn').onclick=toggleLaser;document.getElementById('notesBtn').onclick=toggleNotes;
 document.addEventListener('mousemove',e=>{if(laser){let l=document.getElementById('laser');l.style.left=e.clientX+'px';l.style.top=e.clientY+'px'}});
 function toast(t){let x=document.getElementById('toast');x.textContent=t;x.style.display='block';clearTimeout(window.tt);window.tt=setTimeout(()=>x.style.display='none',1300)}
-function toggleHelp(){toast('← → navegar · F fullscreen · L laser · N notas · +/- fonte')}
+function toggleHelp(){toast('← → navegar · F fullscreen · L laser · N notas · P imprimir · +/- fonte')}
 function toggleTimer(){ if(timer){clearInterval(timer);timer=null;toast('Temporizador parado');return} seconds=0;timer=setInterval(()=>{seconds++;toast('Tempo: '+String(Math.floor(seconds/60)).padStart(2,'0')+':'+String(seconds%60).padStart(2,'0'))},1000);toast('Temporizador iniciado')}
 function demoStep(){document.getElementById('demoResult').innerHTML='<div class="example"><strong>3 opções encontradas</strong><p>Autocarro · 8 min<br>Táxi colectivo · 5 min<br>Rota pedonal · 22 min</p></div>'}
 show(0);
